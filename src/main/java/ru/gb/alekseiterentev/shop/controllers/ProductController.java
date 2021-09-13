@@ -35,4 +35,16 @@ public class ProductController {
         productService.save(id, name, price);
         return "redirect:/product";
     }
+
+    @GetMapping("/decrease/{id}")
+    public String decreasePriseForProduct(@PathVariable Long id) {
+        productService.decrease(id);
+        return "redirect:/product";
+    }
+
+    @GetMapping("/increase/{id}")
+    public String increasePriseForProduct(@PathVariable Long id) {
+        productService.increase(id);
+        return "redirect:/product";
+    }
 }
