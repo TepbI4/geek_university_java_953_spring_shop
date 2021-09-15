@@ -1,6 +1,7 @@
 package ru.gb.alekseiterentev.shop.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.gb.alekseiterentev.shop.model.Product;
 import ru.gb.alekseiterentev.shop.repositories.ProductRepository;
@@ -14,6 +15,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository repository;
 
     @Autowired
+    @Qualifier("dbProductRepository")
     public void setRepository(ProductRepository repository) {
         this.repository = repository;
     }
@@ -29,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void save(Long id, String name, Integer price) {
-        repository.save(new Product(id, name, price));
+    public void save(String name, Integer price) {
+        repository.save(new Product(name, price));
     }
 
     @Override
@@ -39,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
         if (product.getPrice() > 0) {
             product.setPrice(product.getPrice() - 1);
         }
+        repository.save(product);
     }
 
     @Override
@@ -47,5 +50,12 @@ public class ProductServiceImpl implements ProductService {
         if (product.getPrice() > 0) {
             product.setPrice(product.getPrice() + 1);
         }
+        repository.save(product);
+    }
+
+    @Override
+    public void delete(Long id) {
+        Product product = findById(id);
+        repository.delete(product);
     }
 }

@@ -18,6 +18,7 @@
             <td></td>
             <td>Price</td>
             <td></td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
@@ -31,13 +32,16 @@
             <td>
                 <a th:href="@{'/product/increase/' + ${p.id}}" class="btn btn-primary">+</a>
             </td>
+            <td>
+                <a th:href="@{'/product/delete/' + ${p.id}}" class="btn btn-primary">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
     <p></p>
-    <a th:href="@{'/'}" class="btn btn-primary">Main Page</a>
-    <p></p>
     <a th:href="@{'/product/create'}" class="btn btn-primary">Create Product</a>
+    <p></p>
+    <a th:href="@{'/'}" class="btn btn-primary">Main Page</a>
 </div>
 </body>
 </html>

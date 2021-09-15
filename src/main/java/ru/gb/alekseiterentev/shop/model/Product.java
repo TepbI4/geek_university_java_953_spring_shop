@@ -1,12 +1,32 @@
 package ru.gb.alekseiterentev.shop.model;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "title")
     private String name;
+    @Column(name = "price")
     private Integer price;
 
     public Product() {
+    }
+
+    public Product(String name, Integer price) {
+        this.name = name;
+        this.price = price;
     }
 
     public Product(Long id, String name, Integer price) {
