@@ -32,4 +32,20 @@ public class ProductServiceImpl implements ProductService {
     public void save(Long id, String name, Integer price) {
         repository.save(new Product(id, name, price));
     }
+
+    @Override
+    public void decrease(Long id) {
+        Product product = repository.findById(id);
+        if (product.getPrice() > 0) {
+            product.setPrice(product.getPrice() - 1);
+        }
+    }
+
+    @Override
+    public void increase(Long id) {
+        Product product = repository.findById(id);
+        if (product.getPrice() > 0) {
+            product.setPrice(product.getPrice() + 1);
+        }
+    }
 }
