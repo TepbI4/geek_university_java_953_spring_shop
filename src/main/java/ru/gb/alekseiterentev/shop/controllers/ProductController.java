@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String createProduct(@RequestParam Long id, @RequestParam String name, @RequestParam Integer price) {
-        productService.save(id, name, price);
+    public String createProduct(@RequestParam String name, @RequestParam Integer price) {
+        productService.save(name, price);
         return "redirect:/product";
     }
 
@@ -45,6 +45,12 @@ public class ProductController {
     @GetMapping("/increase/{id}")
     public String increasePriseForProduct(@PathVariable Long id) {
         productService.increase(id);
+        return "redirect:/product";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProductById(@PathVariable Long id) {
+        productService.delete(id);
         return "redirect:/product";
     }
 }

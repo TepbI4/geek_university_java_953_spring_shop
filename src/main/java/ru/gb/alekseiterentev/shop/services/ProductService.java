@@ -8,7 +8,8 @@ public interface ProductService {
 
     List<Product> findAll();
     Product findById(Long id);
-    void save(Long id, String name, Integer price);
+    void save(String name, Integer price);
     void decrease(Long id);
     public void increase(Long id);
+    public void delete(Long id);
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ProductRepository {
 
-    void init();
     List<Product> findAllProducts();
     Product findById(Long id);
     void save(Product product);
+    void delete(Product id);
 }
